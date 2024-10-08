@@ -6,8 +6,13 @@
   padding: 0;
   font-family: "Lora", sans-serif;
 }
+
 body {
   background-color: #d0e2f2;
+}
+
+a {
+  color: rgb(79, 79, 244);
 }
 
 #app {
@@ -33,6 +38,7 @@ body {
   width: 80px;
   height: 80px;
 }
+
 .full-page-loader .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -44,10 +50,12 @@ body {
   border-color: #bcbcbc transparent #bcbcbc transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -55,7 +63,8 @@ body {
 
 /* form input */
 
-input:not([type="checkbox"]), textarea {
+input:not([type="checkbox"]),
+textarea {
   border-color: #dfdfdf;
   background-color: #fdfcfb;
   color: #393939;
@@ -66,14 +75,14 @@ input:not([type="checkbox"]), textarea {
   font-style: normal;
   height: 50px;
   padding: 0 20px;
-  max-width: 100%;
+
   border-width: 1px;
   border-style: solid;
   appearance: none;
-  min-width: 100px;
-  width: 100%;
-  border-radius: 25px;
-  margin: 20px 0 0;
+
+  width: 410px;
+  border-radius: 8px;
+
 }
 
 textarea {
@@ -89,6 +98,7 @@ textarea {
 .form-control {
   margin: 20px 0;
 }
+
 .form-control label {
   display: block;
 }
@@ -97,13 +107,16 @@ textarea {
   display: flex;
   align-items: center;
 }
+
 .form-control-check label {
   flex: 1;
 }
+
 .form-control-check input {
   flex: 2;
   height: 20px;
 }
+
 .form-control input[type="checkbox"] {
   width: auto;
   flex: unset;
@@ -123,7 +136,7 @@ input:focus {
   color: #fff;
   border: none;
   padding: 10px 20px;
-  margin: 5px;
+
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
@@ -134,9 +147,11 @@ input:focus {
 .btn:focus {
   outline: none;
 }
+
 .btn:active {
   transform: scale(0.98);
 }
+
 .btn-block {
   display: block;
   width: 100%;
@@ -145,16 +160,13 @@ input:focus {
 /* container */
 
 .container {
-  width: 1400px;
-  max-width: 100%;
+  width: 500px;
+  height: 500px;
   margin: auto;
-  overflow: auto;
-  min-height: 300px;
+
+  padding: 40px;
   background-color: #faf8f2;
-  padding: 30px;
-  padding-top: 60px;
   border-radius: 5px;
-  position: relative;
   box-shadow: 0px 4px 11px 0px rgb(0 0 0 / 14%);
 }
 
@@ -167,6 +179,7 @@ input:focus {
 .container h1 {
   margin-bottom: 20px;
 }
+
 .container .header-btns {
   position: absolute;
   top: 0;
@@ -174,8 +187,9 @@ input:focus {
 }
 
 .container a.active button.btn,
-.container .btn.active    {
+.container .btn.active {
   background: #1cab47;
+  width: 410px;
   color: #fff;
 }
 
@@ -207,7 +221,10 @@ table {
   margin-bottom: 30px;
   width: 100%;
   background-color: #fdfcfb;
+
+
 }
+
 table th,
 table td {
   border-width: 0;
@@ -216,25 +233,30 @@ table td {
   border-bottom-style: solid;
   padding: 13px 30px;
 }
+
 table tr:first-child td,
 table tr:first-child th {
   border-top-width: 1px;
   border-top-style: solid;
 }
+
 table tr td:first-child,
 table tr th:first-child {
   border-left-width: 1px;
   border-left-style: solid;
 }
+
 table tr td:last-child,
 table tr th:last-child {
   border-right-width: 1px;
   border-right-style: solid;
 }
+
 table.is-style-stripes {
   border-width: 0;
   border-style: solid;
 }
+
 table.is-style-stripes tr:nth-child(odd) {
   background-color: transparent !important;
 }
@@ -243,6 +265,7 @@ table tr td,
 table tr th {
   padding: 15px 30px;
 }
+
 table tr td,
 table tr th {
   text-align: left;
@@ -261,6 +284,7 @@ table tr th {
 .book .book-cover {
   position: relative;
 }
+
 .book .book-cover img {
   width: 100%;
   height: 100%;
@@ -440,7 +464,7 @@ table tr th {
   margin-bottom: 12px;
   padding: 18px;
   border-radius: 4px;
-  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -492,7 +516,8 @@ table tr th {
   justify-content: center;
 }
 
-.login-page h1, p {
+.login-page h1,
+p {
   text-align: center;
 }
 
@@ -503,11 +528,6 @@ table tr th {
 .login-page .login-type {
   text-align: center;
 
-}
-
-.login-page .add-form.login {
-  width: 600px;
-  max-width: 100%;
 }
 
 .login-page .add-form .error {
@@ -524,12 +544,12 @@ table tr th {
   cursor: pointer;
 }
 
-.login-page.container button.btn.selected    {
+.login-page.container button.btn.selected {
   background: #3e3e3e;
   color: #fff;
 }
 
-.login-page.container button.btn.login    {
+.login-page.container button.btn.login {
   background: #3e3e3e;
   color: #fff;
 }
