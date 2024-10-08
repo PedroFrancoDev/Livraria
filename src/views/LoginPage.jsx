@@ -1,11 +1,16 @@
 import FullPageLoader from '../components/FullPageLoader.jsx';
 import {useState} from 'react';
+import { auth } from "../firebase/config.js";
 
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState('login');
+  const [userCredentials, setUserCredentials] = useState({});
 
+  function handlerCredentials(e) {
+    setUserCredentials({...userCredentials, [e.target.name] : e.target.valeu});
+  }
   
     return (
       <>
@@ -30,15 +35,15 @@ function LoginPage() {
             <form className="add-form login">
                   <div className="form-control">
                       <label>Email *</label>
-                      <input type="text" name="email" placeholder="Enter your email" />
+                      <input onChange={(e) => setUserCredentials(e)} type="text" name="email" placeholder="Enter your email" />
                   </div>
                   <div className="form-control">
                       <label>Password *</label>
-                      <input type="password" name="password" placeholder="Enter your password" />
+                      <input onChange={(e) => setUserCredentials(e)} type="password" name="password" placeholder="Enter your password" />
                   </div>
                   {
                     loginType == 'login' ?
-                    <button className="active btn btn-block">Login</button>
+                    <button onClick={() => handlerCredentials()} className="active btn btn-block">Login</button>
                     : 
                     <button className="active btn btn-block">Sign Up</button>
                   }
