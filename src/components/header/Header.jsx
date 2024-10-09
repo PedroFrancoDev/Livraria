@@ -33,7 +33,7 @@ function Header({ pageTitle }) {
           </button>
         </NavLink>
 
-        <NavLink to="/add-book">
+        <NavLink to="add-book">
           <button className="btn">
             Add Livro <FaPlus size={12} />
           </button>
