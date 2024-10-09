@@ -12,23 +12,23 @@ function App() {
   const user = useSelector(selectUser);
   return (
     <BrowserRouter>
-  <>
-    <Routes>
-      {user.currentUser ? (
-        <>
-          <Route index element={<BooksPage />} />
-          <Route path="add-book" element={<AddBookPage />} />
-          <Route path="book/:id" element={<SingleBookPage />} />
-        </>
-      ) : (
-        <>
-          <Route index path="/" element={<LoginPage />} />
-          <Route path="resetPassword/:id" element={<ResetPasswordForm />} />
-        </>
-      )}
-    </Routes>
-  </>
-</BrowserRouter>
+      <>
+        <Routes>
+          {user.currentUser ? (
+            <>
+              <Route index element={<BooksPage />} />
+              <Route path="add-book" element={<AddBookPage />} />
+              <Route path="book/:id" element={<SingleBookPage />} />
+            </>
+          ) : (
+            <>
+              <Route index path="/" element={<LoginPage />} />
+              <Route path="resetPassword/:id" element={<ResetPasswordForm />} />
+            </>
+          )}
+        </Routes>
+      </>
+    </BrowserRouter>
   )
 }
 

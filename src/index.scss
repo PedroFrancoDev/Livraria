@@ -136,6 +136,12 @@ input:focus {
 
 /* button */
 
+.btn-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
 .btn {
   display: inline-block;
   color: #fff;
@@ -167,12 +173,26 @@ input:focus {
 /* container */
 
 .container {
-  width:480px;
+  width: 480px;
   height: 500px;
   padding: 40px;
   background-color: #faf8f2;
   border-radius: 5px;
   box-shadow: 0px 4px 11px 0px rgb(0 0 0 / 14%);
+}
+
+.single-book-global {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sigle-book-section {
+  background-color: #f1f1f1;
+  width: 1000px;
+  height: 100%;
+  min-height: 100vh;
+  padding: 40px;
 }
 
 @media (max-width: 768px) {
@@ -217,7 +237,8 @@ input:focus {
   margin-top: 50px;
 }
 
-.globalContainer {
+.globalContainer,
+.reset-global-section {
   background-image: url("./assets/livraria.jpg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -426,12 +447,17 @@ table tr th {
 }
 
 .single-book .book-details .erase-book {
-  color: red;
+  color: rgb(255, 119, 119);
   font-style: italic;
   text-decoration: underline;
   cursor: pointer;
   display: inline-block;
   margin-top: 20px;
+}
+
+.erase-book {
+  color: rgb(255, 119, 119);
+  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {

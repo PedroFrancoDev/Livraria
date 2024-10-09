@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/usersSlice.js";
 import { startLoading, stopLoading, selectLoading } from "../../store/loadingSlice.js";
+import { handleFirebaseError } from "../../firebase/firebaseErrors";
 
 function LoginPage() {
   const [loginType, setLoginType] = useState('login');
@@ -16,15 +17,17 @@ function LoginPage() {
 
   useEffect(() => {
     dispatch(startLoading());
-
-    const handleLoad = () => dispatch(stopLoading());
-
-    window.addEventListener('load', handleLoad);
-    return () => window.removeEventListener('load', handleLoad);
+    const timer = setTimeout(() => {
+      dispatch(stopLoading());
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+      dispatch(stopLoading());
+    };
   }, [dispatch]);
 
-  onAuthStateChanged(auth,(user) => {
-    if(user) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
       dispatch(setUser({ id: user.uid, email: user.email }),);
     } else {
       dispatch(null);
@@ -32,6 +35,7 @@ function LoginPage() {
   });
 
   function handleCredentials(e) {
+    setErrorMessage("");
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   }
 
@@ -44,7 +48,7 @@ function LoginPage() {
       userCredentials.email,
       userCredentials.password
     ).catch((error) => {
-      setErrorMessage(error.message);
+      setErrorMessage(handleFirebaseError(error));
     })
 
   }
@@ -52,13 +56,13 @@ function LoginPage() {
   function handleLogin(e) {
     e.preventDefault();
     setErrorMessage("");
-   
+
     dispatch(startLoading());
     signInWithEmailAndPassword(auth, userCredentials
       .email,
       userCredentials.password
     ).catch((error) => {
-      setErrorMessage(error.message)
+      setErrorMessage(handleFirebaseError(error));
       dispatch(stopLoading());
     })
   }
@@ -67,47 +71,49 @@ function LoginPage() {
     <>
       {isLoading && <FullPageLoader></FullPageLoader>}
 
-     <section className='globalContainer'>
-     <div className="container login-page">
-        <section>
-          <h1>Welcome to the Book App</h1>
-          <p>Login or create an account to continue</p>
-          <div className="login-type">
-            <button
-              className={`btn ${loginType == 'login' ? 'selected' : ''}`}
-              onClick={() => setLoginType('login')}>
-              Entrar
-            </button>
-            <button
-              className={`btn ${loginType == 'signup' ? 'selected' : ''}`}
-              onClick={() => setLoginType('signup')}>
-              Registrar
-            </button>
-          </div>
-          <form className="add-form login">
-            <div className="form-control">
-              <label>Email *</label>
-              <input onChange={(e) => handleCredentials(e)} type="text" name="email" placeholder="Ex:. pedro@gmail.com" />
+      <section className='globalContainer'>
+        <div className="container login-page">
+          <section>
+            <h1>Welcome to the Book App</h1>
+            <p>Login or create an account to continue</p>
+            <div className="login-type">
+              <button
+                className={`btn ${loginType == 'login' ? 'selected' : ''}`}
+                onClick={() => setLoginType('login')}>
+                Entrar
+              </button>
+              <button
+                className={`btn ${loginType == 'signup' ? 'selected' : ''}`}
+                onClick={() => setLoginType('signup')}>
+                Registrar
+              </button>
             </div>
-            <div className="form-control">
-              <label>Senha *</label>
-              <input onChange={(e) => handleCredentials(e)} type="password" name="password" placeholder="Digite sua senha" />
-            </div>
+            <form className="add-form login">
+              <div className="form-control">
+                <label>Email *</label>
+                <input onChange={(e) => handleCredentials(e)} type="text" name="email" placeholder="Ex:. pedro@gmail.com" />
+              </div>
+              <div className="form-control">
+                <label>Senha *</label>
+                <input onChange={(e) => handleCredentials(e)} type="password" name="password" placeholder="Digite sua senha" />
+              </div>
 
-            {
-              loginType == 'login' ?
-                <button onClick={(e) => handleLogin(e)} className="active btn btn-block">Entrar</button>
-                :
-                <button onClick={(e) => handleSignup(e)} className="active btn btn-block">Registrar</button>
-            }
-            {errorMessage && <p className='error'>{errorMessage}</p>}
+              <div className='btn-section'>
+                {
+                  loginType == 'login' ?
+                    <button onClick={(e) => handleLogin(e)} className="active btn btn-block">Entrar</button>
+                    :
+                    <button onClick={(e) => handleSignup(e)} className="active btn btn-block">Registrar</button>
+                }
+                {errorMessage && <p className='error'>{errorMessage}</p>}
+              </div>
 
-            <NavLink to="resetPassword/:id" className="forgot-password">Esqueceu a senha?</NavLink>
-          </form>
-        </section>
-      </div>
-   
-     </section>
+              <NavLink to="resetPassword/:id" className="forgot-password">Esqueceu a senha?</NavLink>
+            </form>
+          </section>
+        </div>
+
+      </section>
     </>
   )
 }
