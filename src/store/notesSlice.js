@@ -20,7 +20,7 @@ export const notesSlice = createSlice({
       book_id: 2,
       title:"Page 61 - On Mesopotamia",
       text: "Jane R. McIntosh wrote the first general introduction to Mesopotamia that covers all four of the area's major ancient civilizations―Sumer, Akkad, Assyria, and Babylonia."
-    }
+    },
     
     ],
   reducers: {

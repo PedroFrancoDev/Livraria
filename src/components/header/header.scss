@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+  
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: inherit;
+    background-color: rgb(157, 157, 157);
+  }
+
+  .logout {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px; border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: inherit;
+    margin-left: 4px;
+    color: rgb(255, 119, 119);
+    transition: 0.5s;
+  }
+
+  .logout:hover {
+    background-color: rgba(246, 121, 121, 0.125);
+  }
