@@ -1,37 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db, auth } from "../firebase/config";
 
 export const booksSlice = createSlice({
   name: 'books',
-  initialState: [
-    {
-      id: 1,
-      title: "A Short History of Europe",
-      cover:
-        "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535542619i/40772628.jpg",
-      isRead: true,
-      author: "Simon Jenkins",
-      synopsis: "In this dazzling new history, bestselling author Simon Jenkins grippingly tells the story of its evolution from warring peoples to peace, wealth and freedom - a story that twists and turns from Greece and Rome, through the Dark Ages, the Reformation and the French Revolution, to the Second World War and up to the present day."
-    },
-    {
-      id: 2,
-      title: "Penguin Classics",
-      cover:
-        "https://m.media-amazon.com/images/I/91cKrZxBuwL._AC_UF1000,1000_QL80_.jpg",
-      isRead: false,
-      author: "Henry Eliot",
-      synopsis: "The Penguin Classics Book covers all the greatest works of fiction, poetry, drama, history, and philosophy in between, this reader's companion encompasses 500 authors, 1,200 books, and 4,000 years of world literature, from ancient Mesopotamia to World War I."
-    },
-    {
-      id: 3,
-      title: "Becoming",
-      cover:
-        "https://m.media-amazon.com/images/I/81-6EJJzxvL.jpg",
-      isRead: false,
-      author: "Michelle Obama",
-      synopsis: "“Becoming” is an autobiography detailing the highs and lows of Michelle Obama's incredible journey from humble beginnings in the less glamourous South Side of Chicago, to the grandeur of the White House and life as America's first African-American First Lady."
-    },
-
-  ],
+  initialState: {
+    books: [],
+    status: "idle",
+  },
   reducers: {
     addBook: (books, action) => {
       let newBook = action.payload;
@@ -48,6 +24,19 @@ export const booksSlice = createSlice({
         }
       });
     }
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchBooks.pending, (state, action) => {
+      console.log("loading");
+      state.status = "loading";
+    }).addCase(fetchBooks.fulfilled, (state, action) => {
+      state.status = "secceeded";
+      state.books = action.payload;
+      console.log("success");
+    }).addCase(fetchBooks.rejected, (state, action) => {
+      state.status = "failed";
+      console.log(action.error.message);
+    })
   }
 })
 
@@ -56,3 +45,16 @@ export const { addBook, eraseBook, toggleRead } = booksSlice.actions;
 export const selectBooks = state => state.books;
 
 export default booksSlice.reducer;
+
+export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
+  const q = query(collection(db, "books"), where("user_id", "==", auth
+    .currentUser.uid
+  ));
+  const querySnapshot = await getDocs(q);
+  const bookList = [];
+  querySnapshot.forEach((doc) => {
+    bookList.push({ id: doc.id, ...doc.data() });
+  });
+
+  return bookList;
+})
