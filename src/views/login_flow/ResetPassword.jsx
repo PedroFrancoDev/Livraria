@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { auth } from "../../firebase/config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { FaArrowLeft } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,6 +17,7 @@ export function ResetPasswordForm() {
 
         sendPasswordResetEmail(auth, email).then(() => {
             notify();
+     
         }).catch((error) => {
             setErrorMessage(handleFirebaseError(error));
         });

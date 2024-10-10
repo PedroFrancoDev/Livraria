@@ -15,6 +15,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
 
+
   useEffect(() => {
     dispatch(startLoading());
     const timer = setTimeout(() => {
@@ -70,7 +71,6 @@ function LoginPage() {
   return (
     <>
       {isLoading && <FullPageLoader></FullPageLoader>}
-
       <section className='globalContainer'>
         <div className="container login-page">
           <section>

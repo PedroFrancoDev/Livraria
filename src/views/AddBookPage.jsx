@@ -1,12 +1,12 @@
-import Header from '../components/Header.jsx';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {addBook} from '../store/booksSlice.js';
 
-function AddBookPage() {
+function AddBookPage({handleCloseModal, notifySuccess, notifyError}) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
 
     function handleAddBook(e) {
         e.preventDefault();
@@ -21,49 +21,39 @@ function AddBookPage() {
 
         if (newBook.title && newBook.cover && newBook.author) {
             dispatch(addBook(newBook));
-            alert('Book created successfully!');
-            navigate("/");
+            notifySuccess();
+            handleCloseModal();
         } else {
-            alert('Please fill the mandatory fields.');
+            notifyError();
         }
-
     }
-    
-    const pageTitle = "Add Book";
 
     return (
-      <>
-        <div className="container">
-            <Header pageTitle={pageTitle} />
-
+      <>    
             <form className="add-form">
                 <div className="form-control">
-                    <label>Title *</label>
-                    <input type="text" name="title" placeholder="Add Book Title" />
+                    <label>Título *</label>
+                    <input type="text" name="title" placeholder="Add título do livro" />
                 </div>
                 <div className="form-control">
-                    <label>Book Cover *</label>
-                    <input type="text" name="cover" placeholder="Add Cover" />
+                    <label>Capa do livro *</label>
+                    <input type="text" name="cover" placeholder="Add capa do Livro" />
                 </div>
 
                 <div className="form-control">
-                <label>Author *</label>
+                <label>Autor *</label>
                 <input
-                    type="text" name="author" placeholder="Add Author" />
+                    type="text" name="author" placeholder="Nome do autor" />
                 </div>
 
                 <div className="form-control">
                 <label>Synopsis</label>
                 <textarea
-                    type="text" name="synopsis" placeholder="Add a synopsis..." />
+                    type="text" name="Sinopse" placeholder="Adicionar uma sinopse..." />
                 </div>
                 
-                <button onClick={(e)=> handleAddBook(e)} className="btn btn-block">Save Book</button>
+                <button onClick={(e)=> handleAddBook(e)} className="btn btn-block">Salvar livro</button>
             </form>
-
-        </div>
-
-        
       </>
     )
   }
