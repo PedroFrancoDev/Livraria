@@ -49,7 +49,7 @@ function AddBookPage({handleCloseModal, notifySuccess, notifyError}) {
                 <div className="form-control">
                 <label>Synopsis</label>
                 <textarea
-                    type="text" name="Sinopse" placeholder="Adicionar uma sinopse..." />
+                    type="text" name="synopsis" placeholder="Adicionar uma sinopse..." />
                 </div>
                 
                 <button onClick={(e)=> handleAddBook(e)} className="btn btn-block">Salvar livro</button>
