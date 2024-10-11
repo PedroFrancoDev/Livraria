@@ -10,6 +10,8 @@ import { FaTimes } from "react-icons/fa"
 import { toast, ToastContainer } from "react-toastify";
 import { fetchBooks } from '../../store/booksSlice.js';
 
+Modal.setAppElement("#root");
+
 const customStyles = {
   content: {
     top: '50%',
@@ -38,13 +40,13 @@ function BooksPage() {
   const bookStatus = useSelector(selectBooks).status;
 
   function handleCloseModal() {
-    if (bookStatus == "idle") {
-      setIsModalOpen(false);
-    }
+    setIsModalOpen(false);
   }
 
   useEffect(() => {
-    dispatch(fetchBooks());
+    if (bookStatus == "idle") {
+      dispatch(fetchBooks());
+    }
   }, []);
 
   return (
