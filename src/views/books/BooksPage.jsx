@@ -65,12 +65,11 @@ function BooksPage() {
         <div className="books-container">
           <div className="books-list">
 
-            {books.map(book =>
+            {bookStatus === "loading" ? <p>carregando...</p> : books.map(book =>
 
-              <Book key={book.id} book={book} />
+<Book key={book.id} book={book} />
 
-            )}
-
+)}
           </div>
         </div>
       </div>

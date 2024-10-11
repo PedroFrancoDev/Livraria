@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { addBook } from '../store/booksSlice.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectBooks } from '../store/booksSlice.js';
 
 function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const addBookStatus = useSelector(selectBooks).status;
 
 
     function handleAddBook(e) {
@@ -58,7 +60,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
                         type="text" name="synopsis" placeholder="Adicionar uma sinopse..." />
                 </div>
 
-                <button onClick={(e) => handleAddBook(e)} className="btn btn-block">Salvar livro</button>
+                <button disabled="false" onClick={(e) => handleAddBook(e)} className="btn btn-block">Salvar livro</button>
             </form>
         </>
     )

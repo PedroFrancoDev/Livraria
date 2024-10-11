@@ -4,15 +4,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectBooks, eraseBook, toggleRead } from '../store/booksSlice.js';
 import { eraseBookNotes } from '../store/notesSlice.js';
 import { FaArrowLeft } from "react-icons/fa";
-
+import { toast, ToastContainer } from "react-toastify";
 function SingleBookPage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const notifySuccess = () => toast.success("Livro removido com sucesso!",);
+  const notifyError = () => toast.error("Erro ao remover o livro à biblioteca. Por favor, tente novamente.",);
 
   function handleEraseBook(id) {
     if (confirm("Tens a certeza de que queres apagar este livro e todas as notas associadas a ele?")) {
-      dispatch(eraseBook(id));
+      dispatch(eraseBook(id)).then((response) => {
+        if(response.error) {
+          notifyError();
+        } else {
+          notifySuccess();
+        }
+      });
       //dispatch(eraseBookNotes(id));
       navigate("/");
     }
@@ -26,6 +34,7 @@ function SingleBookPage() {
 
   return (
     <section className='single-book-global'>
+       <ToastContainer />
       <div className="sigle-book-section">
         <Link to="/">
           <button className="btn">

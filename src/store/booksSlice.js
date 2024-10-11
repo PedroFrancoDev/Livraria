@@ -53,17 +53,23 @@ export const booksSlice = createSlice({
         state.status = "failed";
         console.log(action.error.message);
       }).addCase(eraseBook.fulfilled, (state, action) => {
-        state.books = state.books.filter(book => book.id != action.payload.id);
+        state.books = state.books.filter(book => book.id !== action.payload.id);
+        state.status = "succeeded";
+      }).addCase(eraseBook.pending, (state, action) => {
+        state.status = "loading";
       })
       .addCase(eraseBook.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.error.message);
       }).addCase(addBook.fulfilled, (state, action) => {
         state.books.push(action.payload);
+        state.status = "succeeded";
       })
       .addCase(addBook.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.error.message);
+      }).addCase(addBook.pending, (state, action) => {
+        state.status = "loading";
       });
   },
 });
@@ -102,6 +108,7 @@ export const eraseBook = createAsyncThunk(
   "books/eraseBook",
   async (payload) => {
     await deleteDoc(doc(db, "books", payload));
+   
     return payload;
   }
 );

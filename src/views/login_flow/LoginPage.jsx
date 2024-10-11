@@ -74,8 +74,8 @@ function LoginPage() {
       <section className='globalContainer'>
         <div className="container login-page">
           <section>
-            <h1>Welcome to the Book App</h1>
-            <p>Login or create an account to continue</p>
+            <h1>Bem-vindo à Livraria</h1>
+            <p>Iniciar sessão ou criar uma conta para continuar</p>
             <div className="login-type">
               <button
                 className={`btn ${loginType == 'login' ? 'selected' : ''}`}
