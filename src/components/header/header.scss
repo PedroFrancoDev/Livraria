@@ -36,3 +36,28 @@
   .logout:hover {
     background-color: rgba(246, 121, 121, 0.125);
   }
+
+  @media (max-width: 504px) {
+    .header {
+      display: block;
+    }
+
+    .bookLogo {
+      margin-bottom: 10px;
+    }
+
+    .header-btns {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn{
+      padding: 5px 10px;
+
+    }
+
+    .logout{
+      padding: 5px 10px;
+
+    }
+  }

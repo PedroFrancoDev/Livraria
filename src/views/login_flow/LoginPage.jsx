@@ -112,7 +112,8 @@ function LoginPage() {
             </form>
           </section>
         </div>
-
+        <div className='backgroundImage'>
+        </div>
       </section>
     </>
   )

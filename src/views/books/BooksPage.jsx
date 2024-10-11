@@ -27,6 +27,7 @@ const customStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     backdropFilter: 'blur(1px)',
     zIndex: 999,
+    padding: 40,
   },
 };
 

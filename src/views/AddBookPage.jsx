@@ -28,7 +28,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
                     notifySuccess();
                     handleCloseModal();
                 }
-            });
+            },);
         } else {
             notifyError();
         }

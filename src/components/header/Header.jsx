@@ -27,7 +27,7 @@ function Header({ isModalOpen }) {
   return (
     <div className="header">
 
-      <h1>📖 Livraria</h1>
+      <h1 className='bookLogo'>📖 Livraria</h1>
 
       <div className="header-btns">
        
