@@ -6,7 +6,8 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
+  addDoc,
 } from "firebase/firestore";
 import { db, auth } from "../firebase/config";
 
@@ -57,6 +58,12 @@ export const booksSlice = createSlice({
       .addCase(eraseBook.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.error.message);
+      }).addCase(addBook.fulfilled, (state, action) => {
+        state.books.push(action.payload);
+      })
+      .addCase(addBook.rejected, (state, action) => {
+        state.status = "failed";
+        console.log(action.error.message);
       });
   },
 });
@@ -102,6 +109,12 @@ export const eraseBook = createAsyncThunk(
 export const addBook = createAsyncThunk(
   "books/addBook",
   async (payload) => {
-   
+    let newBook = payload;
+    newBook.user_id = auth.currentUser.uid;
+
+    const docRef = await addDoc(collection(db, "books"), newBook);
+    newBook.id = docRef.id;
+    
+    return newBook;
   }
 );

@@ -20,9 +20,15 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
         }
 
         if (newBook.title && newBook.cover && newBook.author) {
-            dispatch(addBook(newBook));
-            notifySuccess();
-            handleCloseModal();
+            dispatch(addBook(newBook)).then((response) => {
+                console.log(response);
+                if(response.error) {
+                    notifyError();
+                } else {
+                    notifySuccess();
+                    handleCloseModal();
+                }
+            });
         } else {
             notifyError();
         }
