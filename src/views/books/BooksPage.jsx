@@ -65,11 +65,9 @@ function BooksPage() {
         <div className="books-container">
           <div className="books-list">
 
-            {bookStatus === "loading" ? <p>carregando...</p> : books.map(book =>
-
-<Book key={book.id} book={book} />
-
-)}
+            {bookStatus === "loading" ? <p>carregando...</p> : books.length == 0 ? <p>Lista vázia.</p> : books.map(book =>
+              <Book key={book.id} book={book} />
+            )}
           </div>
         </div>
       </div>

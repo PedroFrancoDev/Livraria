@@ -12,7 +12,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
 
     function handleAddBook(e) {
         e.preventDefault();
-
+        console.log("ddff");
         const newBook = {
             title: document.querySelector('input[name=title]').value,
             cover: document.querySelector('input[name=cover]').value,
@@ -24,7 +24,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
         if (newBook.title && newBook.cover && newBook.author) {
             dispatch(addBook(newBook)).then((response) => {
                 console.log(response);
-                if(response.error) {
+                if (response.error) {
                     notifyError();
                 } else {
                     notifySuccess();
@@ -60,7 +60,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
                         type="text" name="synopsis" placeholder="Adicionar uma sinopse..." />
                 </div>
 
-                <button disabled="false" onClick={(e) => handleAddBook(e)} className="btn btn-block">Salvar livro</button>
+                <button disabled={addBookStatus == "loading"} onClick={(e) => handleAddBook(e)} className="btn-block">Salvar livro</button>
             </form>
         </>
     )

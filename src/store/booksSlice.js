@@ -26,7 +26,7 @@ export const booksSlice = createSlice({
         : 1;
       books.push(newBook);
     },*/
-   
+
   },
   extraReducers(builder) {
     builder
@@ -42,7 +42,7 @@ export const booksSlice = createSlice({
         console.log(action.error.message);
       })
       .addCase(toggleRead.fulfilled, (state, action) => {
-      
+
         state.books.map((book) => {
           if (book.id === action.payload.id) {
             book.isRead = !book.isRead;
@@ -53,7 +53,7 @@ export const booksSlice = createSlice({
         state.status = "failed";
         console.log(action.error.message);
       }).addCase(eraseBook.fulfilled, (state, action) => {
-        state.books = state.books.filter(book => book.id !== action.payload.id);
+        state.books = state.books.filter(book => book.id != action.payload.id);
         state.status = "succeeded";
       }).addCase(eraseBook.pending, (state, action) => {
         state.status = "loading";
@@ -108,7 +108,7 @@ export const eraseBook = createAsyncThunk(
   "books/eraseBook",
   async (payload) => {
     await deleteDoc(doc(db, "books", payload));
-   
+
     return payload;
   }
 );
@@ -121,7 +121,7 @@ export const addBook = createAsyncThunk(
 
     const docRef = await addDoc(collection(db, "books"), newBook);
     newBook.id = docRef.id;
-    
+
     return newBook;
   }
 );
