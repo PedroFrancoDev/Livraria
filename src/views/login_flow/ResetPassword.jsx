@@ -28,7 +28,7 @@ export function ResetPasswordForm() {
   }
   return (
     <>
-      <section className="backgroundImage">
+      <section className="globalContainer">
         <div className="container login-page">
           <ToastContainer />
           <section>

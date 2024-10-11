@@ -108,7 +108,9 @@ function LoginPage() {
                 {errorMessage && <p className='error'>{errorMessage}</p>}
               </div>
 
+              <div className='resetConteinar'>
               <NavLink to="resetPassword/:id" className="forgot-password">Esqueceu a senha?</NavLink>
+              </div>
             </form>
           </section>
         </div>
