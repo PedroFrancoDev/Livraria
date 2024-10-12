@@ -64,7 +64,7 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
                 </div>
 
                 <button style={{ backgroundColor: addBookStatus === "loading" ? "gray" : "", }}
-                    className="btn-block" disabled={addBookStatus == "loading"} onClick={(e) => handleAddBook(e)} className="btn-block">{addBookStatus == "loading" ? "Salvando..." : "Salvar livro"}</button>
+                    disabled={addBookStatus == "loading"} onClick={(e) => handleAddBook(e)} className="btn-block">{addBookStatus == "loading" ? "Salvando..." : "Salvar livro"}</button>
             </form>
         </>
     )
