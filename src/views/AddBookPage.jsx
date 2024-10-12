@@ -9,13 +9,13 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
     const navigate = useNavigate();
     const addBookStatus = useSelector(selectBooks).status;
 
-
     function handleAddBook(e) {
         e.preventDefault();
-        console.log("ddff");
+
+        //https://st2.depositphotos.com/25867432/47156/v/1600/depositphotos_471568420-stock-illustration-promo-flyers-bookstore-bookshop-library.jpg
         const newBook = {
             title: document.querySelector('input[name=title]').value,
-            cover: document.querySelector('input[name=cover]').value,
+            cover: isValidImageUrl(document.querySelector('input[name=cover]').value) ? document.querySelector('input[name=cover]').value : "https://st2.depositphotos.com/25867432/47156/v/1600/depositphotos_471568420-stock-illustration-promo-flyers-bookstore-bookshop-library.jpg",
             isRead: false,
             author: document.querySelector('input[name=author]').value,
             synopsis: document.querySelector('textarea[name=synopsis]').value
@@ -35,6 +35,10 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
             notifyError();
         }
     }
+
+    const isValidImageUrl = (url) => {
+        return (/\.(jpeg|jpg|gif|png|bmp|webp)$/i).test(url);
+    };
 
     return (
         <>
