@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { addBook } from '../store/booksSlice.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectBooks } from '../store/booksSlice.js';
+import ClipLoader from "react-spinners/ClipLoader";
 
 function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
 
@@ -11,8 +12,6 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
 
     function handleAddBook(e) {
         e.preventDefault();
-
-        //https://st2.depositphotos.com/25867432/47156/v/1600/depositphotos_471568420-stock-illustration-promo-flyers-bookstore-bookshop-library.jpg
         const newBook = {
             title: document.querySelector('input[name=title]').value,
             cover: isValidImageUrl(document.querySelector('input[name=cover]').value) ? document.querySelector('input[name=cover]').value : "https://st2.depositphotos.com/25867432/47156/v/1600/depositphotos_471568420-stock-illustration-promo-flyers-bookstore-bookshop-library.jpg",
@@ -64,7 +63,8 @@ function AddBookPage({ handleCloseModal, notifySuccess, notifyError }) {
                         type="text" name="synopsis" placeholder="Adicionar uma sinopse..." />
                 </div>
 
-                <button disabled={addBookStatus == "loading"} onClick={(e) => handleAddBook(e)} className="btn-block">Salvar livro</button>
+                <button style={{ backgroundColor: addBookStatus === "loading" ? "gray" : "", }}
+                    className="btn-block" disabled={addBookStatus == "loading"} onClick={(e) => handleAddBook(e)} className="btn-block">{addBookStatus == "loading" ? "Salvando..." : "Salvar livro"}</button>
             </form>
         </>
     )
