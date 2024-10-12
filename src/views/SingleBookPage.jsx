@@ -15,15 +15,17 @@ function SingleBookPage() {
   function handleEraseBook(id) {
     if (confirm("Tens a certeza de que queres apagar este livro e todas as notas associadas a ele?")) {
       dispatch(eraseBook(id)).then((response) => {
-        if(response.error) {
+        if (response.error) {
           notifyError();
         } else {
           notifySuccess();
+          navigate("/");
         }
       });
       //dispatch(eraseBookNotes(id));
-      navigate("/");
     }
+
+    console.log(id);
   }
 
   const { id } = useParams();
@@ -34,12 +36,10 @@ function SingleBookPage() {
 
   return (
     <section className='single-book-global'>
-       <ToastContainer />
+      <ToastContainer />
       <div className="sigle-book-section">
         <Link to="/">
-          <button className="btn">
-            <FaArrowLeft size={19} color="#1c1c1c" /> Voltar aos livros
-          </button>
+          <FaArrowLeft size={19} color="#1c1c1c" />
         </Link>
 
         {book ?
@@ -56,7 +56,7 @@ function SingleBookPage() {
                 <p>{book.synopsis}</p>
                 <div className="read-checkbox">
                   <input
-                    onClick={() => { dispatch(toggleRead({id: book.id, isRead: book.isRead})) }}
+                    onClick={() => { dispatch(toggleRead({ id: book.id, isRead: book.isRead })) }}
                     type="checkbox"
                     defaultChecked={book.isRead} />
                   <label>{book.isRead ? "Já o li" : "Ainda não o li"}</label>

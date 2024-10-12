@@ -60,11 +60,11 @@ function Notes({ bookId }) {
         <details>
           <summary>Adicionar nota</summary>
           <form className="add-note">
-            <div className="form-control">
+            <div className="form-control noteInput">
               <label>Título *</label>
               <input type="text" name="title" placeholder="Adicione título da nota" />
             </div>
-            <div className="form-control">
+            <div className="form-control noteTextArea">
               <label>Nota *</label>
               <textarea type="text" name="note" placeholder="Adicione nota" />
             </div>

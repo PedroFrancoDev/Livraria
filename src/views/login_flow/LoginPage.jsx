@@ -88,6 +88,8 @@ function LoginPage() {
                 Registrar
               </button>
             </div>
+            <br />
+            <br />
             <form className="add-form login">
               <div className="form-control">
                 <label>Email *</label>
@@ -109,7 +111,7 @@ function LoginPage() {
               </div>
 
               <div className='resetConteinar'>
-              <NavLink to="resetPassword/:id" className="forgot-password">Esqueceu a senha?</NavLink>
+                <NavLink to="resetPassword/:id" className="forgot-password">Esqueceu a senha?</NavLink>
               </div>
             </form>
           </section>

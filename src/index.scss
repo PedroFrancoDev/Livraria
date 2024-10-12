@@ -86,7 +86,7 @@ textarea {
   border-style: solid;
   appearance: none;
   border-radius: 8px;
-  width: 320px;
+  width: 350px;
 }
 
 textarea {
@@ -182,6 +182,34 @@ input:focus {
   box-shadow: 0px 4px 11px 0px rgb(0 0 0 / 14%);
 }
 
+@media (max-width: 614px) {
+
+  .noteTextArea textarea {
+    width: 100%;
+  }
+
+  .noteInput input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 668px) {
+  .login-page {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .backgroundImage {
+    display: none;
+  }
+
+  .container {
+    flex: 1;
+
+  }
+}
+
 .single-book-global {
   width: 100%;
   display: flex;
@@ -247,12 +275,6 @@ input:focus {
   background-position: right;
   width: 100%;
   height: 100vh;
-}
-
-@media (max-width: 380px) {
-  .backgroundImage {
-    background-image: none;
-  }
 }
 
 .globalContainer {
@@ -426,6 +448,7 @@ table tr th {
 .single-book {
   display: flex;
   padding: 40px;
+  padding-left: 0px;
 }
 
 .single-book .book-cover {
@@ -495,7 +518,6 @@ table tr th {
 }
 
 .notes-wrapper {
-  padding-left: 40px;
   max-width: 600px;
 }
 

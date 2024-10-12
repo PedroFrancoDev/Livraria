@@ -42,7 +42,6 @@ export const booksSlice = createSlice({
         console.log(action.error.message);
       })
       .addCase(toggleRead.fulfilled, (state, action) => {
-
         state.books.map((book) => {
           if (book.id === action.payload.id) {
             book.isRead = !book.isRead;
@@ -108,7 +107,7 @@ export const eraseBook = createAsyncThunk(
   "books/eraseBook",
   async (payload) => {
     await deleteDoc(doc(db, "books", payload));
-
+    console.log(payload);
     return payload;
   }
 );

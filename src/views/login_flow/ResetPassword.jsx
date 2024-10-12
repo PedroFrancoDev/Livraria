@@ -37,6 +37,8 @@ export function ResetPasswordForm() {
             </NavLink>
             <br />
             <br />
+            <br />
+            <br />
             <form className="add-form login">
               <div className="form-control">
                 <label>Email *</label>
